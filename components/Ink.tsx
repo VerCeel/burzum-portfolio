@@ -76,38 +76,6 @@ export function Birds({ className = "" }: { className?: string }) {
   );
 }
 
-export function Wanderer({ className = "" }: { className?: string }) {
-  return (
-    <svg className={`wanderer ${className}`} viewBox="0 0 40 70" aria-hidden="true">
-      <g fill="currentColor">
-        <path d="M6 14 20 5l14 9c-9 2-19 2-28 0z" />
-        <circle cx="20" cy="17" r="4.5" />
-        <path d="M13 21c-5 14-7 30-6 43h26c1-13-1-29-6-43-4 2-10 2-14 0z" />
-        <path d="M15 64h4v5h-4zM22 64h4v5h-4z" />
-      </g>
-    </svg>
-  );
-}
-
-export function Branch() {
-  const blossoms: [number, number, number][] = [
-    [212, 38, 4], [196, 60, 3], [170, 44, 3.5], [150, 76, 4], [128, 58, 3],
-    [112, 96, 3.5], [88, 80, 3], [70, 112, 4], [52, 98, 2.5], [36, 128, 3],
-    [160, 100, 2.5], [184, 84, 3], [100, 124, 2.5], [228, 62, 2.5],
-  ];
-  return (
-    <svg className="branch" viewBox="0 0 260 180" aria-hidden="true">
-      <g fill="none" stroke="currentColor" strokeLinecap="round" filter="url(#dry)">
-        <path d="M260 20C214 30 176 52 140 78S72 118 24 136" strokeWidth="3.4" />
-        <path d="M196 44c-8-12-18-18-30-20M150 72c2 14 8 24 18 32M110 98c-10-8-20-10-30-8M178 56c10 8 22 10 34 8M76 114c2 8 8 14 16 18" strokeWidth="1.6" />
-      </g>
-      {blossoms.map(([x, y, r], i) => (
-        <circle key={i} cx={x} cy={y} r={r} fill="var(--red)" opacity={0.55 + (i % 4) * 0.12} />
-      ))}
-    </svg>
-  );
-}
-
 /** Lattice corner ornament, drawn for the top-left corner; flip it with CSS for the others. */
 export function Fret({ className = "" }: { className?: string }) {
   return (

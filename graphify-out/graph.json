@@ -103,10 +103,21 @@
       "norm_label": "petals"
     },
     {
-      "label": "garden",
+      "label": "sakura",
       "file_type": "code",
       "source_file": "app/page.tsx",
       "source_location": "L12",
+      "_origin": "ast",
+      "id": "app_page_sakura",
+      "community": 0,
+      "community_name": "page.tsx",
+      "norm_label": "sakura"
+    },
+    {
+      "label": "garden",
+      "file_type": "code",
+      "source_file": "app/page.tsx",
+      "source_location": "L18",
       "_origin": "ast",
       "id": "app_page_garden",
       "community": 0,
@@ -117,7 +128,7 @@
       "label": "lily()",
       "file_type": "code",
       "source_file": "app/page.tsx",
-      "source_location": "L20",
+      "source_location": "L26",
       "_origin": "ast",
       "id": "app_page_lily",
       "community": 0,
@@ -128,7 +139,7 @@
       "label": "WorkRow()",
       "file_type": "code",
       "source_file": "app/page.tsx",
-      "source_location": "L37",
+      "source_location": "L43",
       "_origin": "ast",
       "id": "app_page_workrow",
       "community": 0,
@@ -139,7 +150,7 @@
       "label": "Home()",
       "file_type": "code",
       "source_file": "app/page.tsx",
-      "source_location": "L56",
+      "source_location": "L62",
       "_origin": "ast",
       "id": "app_page_home",
       "community": 0,
@@ -202,32 +213,10 @@
       "norm_label": "birds()"
     },
     {
-      "label": "Wanderer()",
-      "file_type": "code",
-      "source_file": "components/Ink.tsx",
-      "source_location": "L79",
-      "_origin": "ast",
-      "id": "components_ink_wanderer",
-      "community": 0,
-      "community_name": "page.tsx",
-      "norm_label": "wanderer()"
-    },
-    {
-      "label": "Branch()",
-      "file_type": "code",
-      "source_file": "components/Ink.tsx",
-      "source_location": "L92",
-      "_origin": "ast",
-      "id": "components_ink_branch",
-      "community": 0,
-      "community_name": "page.tsx",
-      "norm_label": "branch()"
-    },
-    {
       "label": "Fret()",
       "file_type": "code",
       "source_file": "components/Ink.tsx",
-      "source_location": "L112",
+      "source_location": "L80",
       "_origin": "ast",
       "id": "components_ink_fret",
       "community": 0,
@@ -758,8 +747,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "tsconfig_compileroptions_lib",
-      "community": 1,
-      "community_name": "compilerOptions",
+      "community": 8,
+      "community_name": "lib",
       "norm_label": "lib"
     },
     {
@@ -769,8 +758,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "ref_dom",
-      "community": 1,
-      "community_name": "compilerOptions",
+      "community": 8,
+      "community_name": "lib",
       "norm_label": "dom"
     },
     {
@@ -780,8 +769,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "ref_dom_iterable",
-      "community": 1,
-      "community_name": "compilerOptions",
+      "community": 8,
+      "community_name": "lib",
       "norm_label": "dom.iterable"
     },
     {
@@ -791,8 +780,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "ref_esnext",
-      "community": 1,
-      "community_name": "compilerOptions",
+      "community": 8,
+      "community_name": "lib",
       "norm_label": "esnext"
     },
     {
@@ -1199,7 +1188,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/page.tsx",
-      "source_location": "L12",
+      "source_location": "L18",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_page",
@@ -1210,7 +1199,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/page.tsx",
-      "source_location": "L56",
+      "source_location": "L62",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_page",
@@ -1221,7 +1210,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/page.tsx",
-      "source_location": "L20",
+      "source_location": "L26",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_page",
@@ -1243,7 +1232,18 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/page.tsx",
-      "source_location": "L37",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "app_page",
+      "target": "app_page_sakura",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/page.tsx",
+      "source_location": "L43",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_page",
@@ -1283,18 +1283,6 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_page",
-      "target": "components_ink_branch",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/page.tsx",
-      "source_location": "L2",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_page",
       "target": "components_ink_fret",
       "confidence_score": 1.0
     },
@@ -1320,18 +1308,6 @@
       "_origin": "ast",
       "source": "app_page",
       "target": "components_ink_inkfilters",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/page.tsx",
-      "source_location": "L2",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_page",
-      "target": "components_ink_wanderer",
       "confidence_score": 1.0
     },
     {
@@ -1459,7 +1435,7 @@
       "context": "argument",
       "confidence": "INFERRED",
       "source_file": "app/page.tsx",
-      "source_location": "L74",
+      "source_location": "L80",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_page_home",
@@ -1481,17 +1457,6 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "components/Ink.tsx",
-      "source_location": "L92",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "components_ink",
-      "target": "components_ink_branch",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "components/Ink.tsx",
       "source_location": "L55",
       "weight": 1.0,
       "_origin": "ast",
@@ -1503,7 +1468,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "components/Ink.tsx",
-      "source_location": "L112",
+      "source_location": "L80",
       "weight": 1.0,
       "_origin": "ast",
       "source": "components_ink",
@@ -1530,17 +1495,6 @@
       "_origin": "ast",
       "source": "components_ink",
       "target": "components_ink_inkfilters",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "components/Ink.tsx",
-      "source_location": "L79",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "components_ink",
-      "target": "components_ink_wanderer",
       "confidence_score": 1.0
     },
     {
@@ -2334,5 +2288,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "f9bc1aa49e2b074f21ad490de342be3b6d983e7f"
+  "built_at_commit": "e1d7f4fb3df61fb5a5d96ab7162d64a6c9f08b96"
 }

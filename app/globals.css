@@ -18,6 +18,8 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  /* red thumb on a paper track */
+  scrollbar-color: var(--red) var(--paper-deep);
 }
 
 body {
@@ -483,9 +485,17 @@ ol {
 .about {
   isolation: isolate;
   max-width: 1320px;
+  /* on wide screens the text and motto step left to leave the branch more room */
+  --shift: clamp(0px, (100vw - 1320px) * 0.2, 70px);
+  /* clear space between the motto and the right edge of the screen */
+  --room: calc(max(0px, (100vw - 1320px) / 2) + var(--gutter) + var(--shift));
+  /* the lowest blossoms reach to 12% from the picture's left edge: size the picture so they stay inside that room */
+  --branch-w: clamp(250px, (var(--room) - 16px) / 0.88, 480px);
+  --branch-h: calc(var(--branch-w) * 1070 / 703);
+  padding-right: calc(var(--gutter) + var(--shift));
 }
 
-/* ink painting washed into the paper on the left */
+/* ink painting on the left, its ground cut away so only the ink sits on the paper */
 .aboutBg {
   position: absolute;
   z-index: -1;
@@ -493,8 +503,7 @@ ol {
   bottom: 0;
   left: calc((100% - 100vw) / 2);
   width: min(47vw, 720px);
-  opacity: 0.85;
-  mix-blend-mode: multiply;
+  opacity: 0.9;
   pointer-events: none;
   -webkit-mask-image:
     linear-gradient(to right, #000 70%, transparent),
@@ -511,20 +520,71 @@ ol {
   object-position: left center;
 }
 
+/* cherry branch reaching in from the right edge, its top level with the section heading
+   (the section's top padding); nudged right so the cut end of the bough runs off the screen */
+.aboutBranch {
+  position: absolute;
+  z-index: -1;
+  top: clamp(96px, 16vh, 180px);
+  right: calc((100% - 100vw) / 2);
+  height: var(--branch-h);
+  aspect-ratio: 703 / 1070;
+  transform: translateX(4%);
+  pointer-events: none;
+}
+
+.aboutBranch img {
+  object-fit: contain;
+  object-position: right top;
+}
+
+/* pink petals shed by the branch, drifting down and to the left across the section */
+.sakura {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc((100% - 100vw) / 2);
+  width: 100vw;
+  container-type: size;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.sakura i {
+  position: absolute;
+  top: -16px;
+  aspect-ratio: 5 / 4;
+  background: linear-gradient(135deg, #fbd5d0, #f0a2a6);
+  border-radius: 100% 0 100% 20%;
+  opacity: 0;
+  animation: sakuraFall linear infinite;
+}
+
+.sakura i:nth-child(odd) {
+  animation-name: sakuraFallWide;
+}
+
 .aboutGrid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 520px) auto;
-  gap: clamp(32px, 4.5vw, 64px);
+  gap: clamp(28px, 3vw, 40px);
 }
 
 .prose {
   grid-column: 2;
 }
 
+/* when the branch cannot fit beside the motto, the motto drops to just under its lowest blossoms
+   (their height, less the heading above the grid); otherwise it stays level with the text */
 .motto {
   display: flex;
   gap: 18px;
   align-items: flex-start;
+  margin-top: clamp(
+    0px,
+    (var(--branch-w) * 0.88 - var(--room)) * 999,
+    var(--branch-h) * 0.67 - 44px - clamp(48px, 8vh, 88px)
+  );
 }
 
 .motto .brush {
@@ -573,16 +633,6 @@ ol {
   font-size: 18px;
   font-style: italic;
   color: var(--ink-soft);
-}
-
-.branch {
-  position: absolute;
-  right: 0;
-  bottom: -30px;
-  width: clamp(160px, 22vw, 280px);
-  color: var(--ink);
-  opacity: 0.9;
-  pointer-events: none;
 }
 
 /* ---------- work ---------- */
@@ -774,6 +824,25 @@ a.workRow:hover .workMain {
   object-position: left top;
 }
 
+/* pine under a pale moon, its paper cut away, standing against the right edge */
+.contactPine {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  right: 0;
+  /* a little taller than the section, with the picture's empty right margin pushed off the edge */
+  height: min(110%, 58vw);
+  aspect-ratio: 928 / 1232;
+  transform: translate(7%, -50%);
+  opacity: 0.92;
+  pointer-events: none;
+}
+
+.contactPine img {
+  object-fit: contain;
+  object-position: right center;
+}
+
 .contactTop {
   display: flex;
   justify-content: space-between;
@@ -816,28 +885,9 @@ a.workRow:hover .workMain {
   min-height: 300px;
 }
 
-.ghost {
-  position: absolute;
-  left: 3%;
-  top: 50%;
-  display: grid;
-  gap: 34px;
-  transform: translateY(-50%);
-  font-size: clamp(14px, 1.6vw, 20px);
-  letter-spacing: 1.15em;
-  z-index: 1;
-  color: #ee4a30;
-  opacity: 0.85;
-  white-space: nowrap;
-}
-
-
+/* the four characters sit dead centre; the pinyin hangs off their right side without shifting them */
 .greeting {
   position: relative;
-  display: flex;
-  align-items: flex-end;
-  gap: 16px;
-  margin-left: 22%;
 }
 
 .greeting .brush {
@@ -848,7 +898,11 @@ a.workRow:hover .workMain {
 }
 
 .pinyin {
-  max-width: 130px;
+  position: absolute;
+  left: 100%;
+  bottom: 0;
+  width: 130px;
+  margin-left: 16px;
   padding-bottom: 14px;
   font-family: var(--font-sans), sans-serif;
   font-size: 9px;
@@ -918,18 +972,6 @@ a.workRow:hover .workMain {
   white-space: nowrap;
 }
 
-.wanderer {
-  color: #0d0202;
-}
-
-.contactWanderer {
-  position: absolute;
-  right: 16%;
-  bottom: 64px;
-  width: clamp(26px, 3vw, 40px);
-  filter: drop-shadow(-14px 10px 8px rgb(0 0 0 / 0.45));
-}
-
 /* ---------- motion ---------- */
 
 @keyframes rise {
@@ -975,6 +1017,49 @@ a.workRow:hover .workMain {
   }
 }
 
+@keyframes sakuraFall {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(0);
+  }
+  8% {
+    opacity: 0.9;
+  }
+  50% {
+    transform: translate(-9vw, 52cqh) rotate(220deg) rotateX(180deg);
+  }
+  88% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-13vw, 104cqh) rotate(430deg) rotateX(360deg);
+  }
+}
+
+@keyframes sakuraFallWide {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(40deg);
+  }
+  8% {
+    opacity: 0.85;
+  }
+  35% {
+    transform: translate(-12vw, 34cqh) rotate(-120deg) rotateY(180deg);
+  }
+  70% {
+    transform: translate(-17vw, 72cqh) rotate(-260deg) rotateY(360deg);
+  }
+  88% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-27vw, 104cqh) rotate(-400deg) rotateY(540deg);
+  }
+}
+
 @keyframes drip {
   0% {
     transform: scaleY(0);
@@ -1008,7 +1093,8 @@ a.workRow:hover .workMain {
     transform: none;
   }
 
-  .petals {
+  .petals,
+  .sakura {
     display: none;
   }
 }
@@ -1017,6 +1103,10 @@ a.workRow:hover .workMain {
 @media (max-width: 1120px) {
   .aboutBg {
     opacity: 0.25;
+  }
+
+  .aboutBranch {
+    opacity: 0.5;
   }
 
   .aboutGrid {
@@ -1086,12 +1176,17 @@ a.workRow:hover .workMain {
     object-position: center;
   }
 
-  .motto {
-    grid-row: 1;
+  .about {
+    --branch-w: 236px;
   }
 
-  .branch {
-    display: none;
+  .aboutBranch {
+    opacity: 0.3;
+  }
+
+  .motto {
+    grid-row: 1;
+    margin-top: 0;
   }
 
   .workRow {
@@ -1129,23 +1224,25 @@ a.workRow:hover .workMain {
     padding-left: 0.3em;
   }
 
-  .ghost {
-    display: none;
-  }
-
   .contactBg {
     opacity: 0.6;
   }
 
+  .contactPine {
+    height: min(60%, 96vw);
+    opacity: 0.4;
+    transform: translateY(-50%);
+  }
 
   .greeting {
-    flex-direction: column;
-    align-items: flex-start;
-    margin-left: 0;
+    text-align: center;
   }
 
   .pinyin {
-    max-width: none;
+    position: static;
+    width: auto;
+    margin: 12px 0 0;
+    padding-bottom: 0;
   }
 
   .contactBottom {
@@ -1153,8 +1250,4 @@ a.workRow:hover .workMain {
     align-items: flex-start;
   }
 
-  .contactWanderer {
-    right: 12%;
-    bottom: 112px;
-  }
 }

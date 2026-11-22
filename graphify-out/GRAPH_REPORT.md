@@ -1,16 +1,16 @@
 # Graph Report - burzum  (2026-11-22)
 
 ## Corpus Check
-- 12 files · ~37,751 words
+- 12 files · ~61,102 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 100 nodes · 108 edges · 11 communities (8 shown, 3 thin omitted)
+- 99 nodes · 105 edges · 12 communities (9 shown, 3 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 1 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `f9bc1aa4`
+- Built from commit: `e1d7f4fb`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -23,6 +23,7 @@
 - package.json
 - dependencies
 - README.md
+- lib
 - AGENTS.md
 - eslint.config.mjs
 - next.config.ts
@@ -45,15 +46,15 @@
 ## Import Cycles
 - None detected.
 
-## Communities (11 total, 3 thin omitted)
+## Communities (12 total, 3 thin omitted)
 
 ### Community 0 - "page.tsx"
 Cohesion: 0.13
-Nodes (18): garden, Home(), lily(), petals, Birds(), Branch(), flock, Fret() (+10 more)
+Nodes (17): garden, Home(), lily(), petals, sakura, Birds(), flock, Fret() (+9 more)
 
 ### Community 1 - "compilerOptions"
-Cohesion: 0.11
-Nodes (19): dom, dom.iterable, esnext, compilerOptions, allowJs, esModuleInterop, incremental, isolatedModules (+11 more)
+Cohesion: 0.13
+Nodes (15): compilerOptions, allowJs, esModuleInterop, incremental, isolatedModules, jsx, module, moduleResolution (+7 more)
 
 ### Community 2 - "devDependencies"
 Cohesion: 0.15
@@ -79,21 +80,25 @@ Nodes (7): next, dependencies, next, react, react-dom, react, react-dom
 Cohesion: 0.50
 Nodes (3): Deploy on Vercel, Getting Started, Learn More
 
+### Community 8 - "lib"
+Cohesion: 0.50
+Nodes (4): dom, dom.iterable, esnext, lib
+
 ## Knowledge Gaps
-- **55 isolated node(s):** `sans`, `latin`, `brush`, `serifSc`, `metadata` (+50 more)
+- **56 isolated node(s):** `sans`, `latin`, `brush`, `serifSc`, `metadata` (+51 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **3 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `compilerOptions` connect `compilerOptions` to `include`?**
-  _High betweenness centrality (0.067) - this node is a cross-community bridge._
+- **Why does `compilerOptions` connect `compilerOptions` to `lib`, `include`?**
+  _High betweenness centrality (0.069) - this node is a cross-community bridge._
 - **Why does `devDependencies` connect `devDependencies` to `package.json`?**
-  _High betweenness centrality (0.052) - this node is a cross-community bridge._
+  _High betweenness centrality (0.053) - this node is a cross-community bridge._
 - **What connects `sans`, `latin`, `brush` to the rest of the system?**
-  _55 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _56 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `page.tsx` be split into smaller, more focused modules?**
   _Cohesion score 0.13043478260869565 - nodes in this community are weakly interconnected._
 - **Should `compilerOptions` be split into smaller, more focused modules?**
-  _Cohesion score 0.10526315789473684 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.13333333333333333 - nodes in this community are weakly interconnected._

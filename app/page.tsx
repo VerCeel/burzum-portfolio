@@ -1,11 +1,17 @@
 import Image from "next/image";
-import { Birds, Branch, Fret, Gate, InkFilters, Wanderer } from "@/components/Ink";
+import { Birds, Fret, Gate, InkFilters } from "@/components/Ink";
 import Reveal from "@/components/Reveal";
 import SealNav from "@/components/SealNav";
 import { education, experience, links, profile, works } from "@/lib/content";
 
 const petals = [
   [12, 0, 15], [27, 5, 19], [41, 9, 14], [58, 2, 21], [66, 12, 17], [79, 6, 16], [90, 14, 20],
+];
+
+/** Sakura petals drifting off the blossom branch: [left %, delay s, duration s, size px]. */
+const sakura = [
+  [96, 0, 13, 11], [88, 3.5, 16, 9], [79, 7, 12, 12], [70, 1.5, 18, 8], [91, 9, 15, 10], [62, 5, 17, 9],
+  [83, 11, 14, 11], [74, 13.5, 19, 8], [54, 8, 16, 10], [98, 6, 20, 9], [66, 15, 13, 12], [46, 2.5, 21, 8],
 ];
 
 /** Lily clumps as [stencil, width, left, bottom, behind the skeleton?], in fractions of the garden box. */
@@ -113,7 +119,19 @@ export default function Home() {
       {/* 我 — About */}
       <section id="about" className="section about">
         <div className="aboutBg" aria-hidden="true">
-          <Image src="/ink-pavilion.jpg" alt="" fill sizes="(max-width: 760px) 100vw, 50vw" />
+          <Image src="/ink-pavilion.webp" alt="" fill sizes="(max-width: 760px) 100vw, 50vw" />
+        </div>
+        {/* a cherry branch reaching in from the top right corner, shedding petals */}
+        <div className="aboutBranch" aria-hidden="true">
+          <Image src="/ink-sakura-branch.webp" alt="" fill sizes="(max-width: 760px) 240px, 480px" />
+        </div>
+        <div className="sakura" aria-hidden="true">
+          {sakura.map(([left, delay, dur, size], i) => (
+            <i
+              key={i}
+              style={{ left: `${left}%`, width: size, animationDelay: `${delay}s`, animationDuration: `${dur}s` }}
+            />
+          ))}
         </div>
         <Reveal className="heading">
           <span className="brush">壹</span>
@@ -136,10 +154,7 @@ export default function Home() {
             <p className="brush" lang="zh">{profile.motto.cn}</p>
             <p className="mottoEn">{profile.motto.en}</p>
           </Reveal>
-
         </div>
-
-        <Branch />
       </section>
 
       {/* 作 — Work */}
@@ -207,6 +222,10 @@ export default function Home() {
         <div className="contactBg" aria-hidden="true">
           <Image src="/ink-figure.jpg" alt="" fill sizes="(max-width: 760px) 100vw, 45vw" />
         </div>
+        {/* a pine under a pale moon, on the right */}
+        <div className="contactPine" aria-hidden="true">
+          <Image src="/ink-pine-moon.webp" alt="" fill sizes="(max-width: 760px) 70vw, 40vw" />
+        </div>
         <div className="contactTop">
           <p className="shout">
             Let&rsquo;s
@@ -224,10 +243,6 @@ export default function Home() {
         </div>
 
         <div className="contactMid">
-          <p className="ghost" aria-hidden="true">
-            <span>S A Y</span>
-            <span>H E L L O</span>
-          </p>
           <Reveal className="greeting">
             <p className="brush" lang="zh">见字如面</p>
             <p className="pinyin">Jian · Zi · Ru · Mian<span>to read these words is to meet in person</span></p>
@@ -246,7 +261,6 @@ export default function Home() {
             </ul>
           </div>
           <p className="colophon">© {year} {profile.name}</p>
-          <Wanderer className="contactWanderer" />
         </div>
       </section>
     </main>

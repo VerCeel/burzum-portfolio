@@ -7,6 +7,7 @@
   "5": "package.json",
   "6": "dependencies",
   "7": "README.md",
+  "8": "lib",
   "9": "AGENTS.md",
   "10": "eslint.config.mjs",
   "11": "next.config.ts"
