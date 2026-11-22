@@ -107,3 +107,12 @@ export function Branch() {
     </svg>
   );
 }
+
+/** Lattice corner ornament, drawn for the top-left corner; flip it with CSS for the others. */
+export function Fret({ className = "" }: { className?: string }) {
+  return (
+    <svg className={`fret ${className}`} viewBox="0 0 122 122" aria-hidden="true">
+      <path d="M3 120V3h117M11 96V11h85M19 19h22v22H19zM31 31h20v20H31zM41 25h18V11M25 41v18H11" />
+    </svg>
+  );
+}

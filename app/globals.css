@@ -165,12 +165,126 @@ ol {
   padding: 72px var(--gutter) 120px;
   text-align: center;
   overflow: hidden;
+  /* own stacking group so the dragons can sit behind the text and still multiply into the paper */
+  isolation: isolate;
+  background: var(--paper);
+  --orn: clamp(84px, 13vw, 190px);
+  --orn-inset: clamp(12px, 1.8vw, 28px);
+}
+
+/* lattice corner ornaments */
+.fret {
+  position: absolute;
+  width: var(--orn, 96px);
+  height: var(--orn, 96px);
+  fill: none;
+  stroke: var(--red);
+  stroke-width: 3.2;
+  stroke-linecap: square;
+  pointer-events: none;
+}
+
+.fret.tl {
+  top: var(--orn-inset, 14px);
+  left: var(--orn-inset, 14px);
+}
+
+.fret.tr {
+  top: var(--orn-inset, 14px);
+  right: var(--orn-inset, 14px);
+  transform: scaleX(-1);
+}
+
+.fret.bl {
+  bottom: var(--orn-inset, 14px);
+  left: var(--orn-inset, 14px);
+  transform: scaleY(-1);
+}
+
+.fret.br {
+  bottom: var(--orn-inset, 14px);
+  right: var(--orn-inset, 14px);
+  transform: scale(-1);
+}
+
+.hero .fret {
+  animation: soak 1.6s 0.2s both;
+}
+
+/* section corners sit out at the page edges, in the padding, clear of the text column */
+.work .fret {
+  --orn: clamp(56px, 7vw, 96px);
+  --edge: calc((100% - 100vw) / 2 + clamp(12px, 1.8vw, 28px));
+  opacity: 0.8;
+}
+
+.work .fret.tr {
+  top: 16px;
+  right: var(--edge);
+}
+
+.work .fret.bl {
+  bottom: 16px;
+  left: var(--edge);
+}
+
+/* dragon among spider lilies, to the right of the gate */
+.dragon {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  right: clamp(8px, 4.5vw, 104px);
+  height: min(84svh, 50vw);
+  aspect-ratio: 1112 / 1640;
+  transform: translateY(-51%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  animation: soak 2.4s 0.4s both;
+}
+
+.dragon img {
+  object-fit: contain;
+}
+
+/* skeleton in a garden of black spider lilies, left of the gate */
+.soul {
+  position: absolute;
+  z-index: -1;
+  left: clamp(0px, 2vw, 48px);
+  bottom: 21%;
+  width: min(34vw, 62svh);
+  aspect-ratio: 1094 / 1040;
+  pointer-events: none;
+  animation: soak 2.4s 0.5s both;
+}
+
+.soulSkeleton {
+  position: absolute;
+  left: 24%;
+  top: 0;
+  height: 100%;
+  aspect-ratio: 730 / 1150;
+}
+
+/* each clump is the lily picture used as a stencil for ink; the stems fade into the paper */
+.lily {
+  position: absolute;
+  aspect-ratio: 1080 / 608;
+  background: var(--ink);
+  -webkit-mask-size: 100% 100%;
+  -webkit-mask-composite: source-in;
+  mask-size: 100% 100%;
+  mask-composite: intersect;
+}
+
+.lily.back {
+  opacity: 0.38;
 }
 
 .corner {
   position: absolute;
-  top: clamp(20px, 4vw, 40px);
-  left: var(--gutter);
+  top: calc(var(--orn-inset) + var(--orn) * 0.56);
+  left: calc(var(--orn-inset) + var(--orn) * 0.56);
   font-family: var(--font-sans), sans-serif;
   font-size: 10px;
   letter-spacing: 0.34em;
@@ -272,9 +386,9 @@ ol {
 
 .heroBirds {
   position: absolute;
-  top: 9%;
-  right: 6%;
-  width: clamp(170px, 26vw, 340px);
+  top: 4%;
+  right: 31%;
+  width: clamp(130px, 14vw, 200px);
   opacity: 0.8;
   animation: drift 16s ease-in-out infinite alternate;
 }
@@ -912,6 +1026,18 @@ a.workRow:hover .workMain {
   .prose {
     grid-column: 1;
   }
+
+  .soul {
+    display: none;
+  }
+
+  /* no room beside the gate: the dragon sits faint behind the name */
+  .dragon {
+    right: 50%;
+    height: min(86svh, 150vw);
+    opacity: 0.2;
+    transform: translate(50%, -50%);
+  }
 }
 
 /* ---------- small screens ---------- */
@@ -940,6 +1066,10 @@ a.workRow:hover .workMain {
     top: 12%;
     right: 12%;
     opacity: 0.5;
+  }
+
+  .work .fret {
+    display: none;
   }
 
   .aboutGrid {

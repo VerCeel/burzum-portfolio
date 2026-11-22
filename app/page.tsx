@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Birds, Branch, Gate, InkFilters, Wanderer } from "@/components/Ink";
+import { Birds, Branch, Fret, Gate, InkFilters, Wanderer } from "@/components/Ink";
 import Reveal from "@/components/Reveal";
 import SealNav from "@/components/SealNav";
 import { education, experience, links, profile, works } from "@/lib/content";
@@ -7,6 +7,32 @@ import { education, experience, links, profile, works } from "@/lib/content";
 const petals = [
   [12, 0, 15], [27, 5, 19], [41, 9, 14], [58, 2, 21], [66, 12, 17], [79, 6, 16], [90, 14, 20],
 ];
+
+/** Lily clumps as [stencil, width, left, bottom, behind the skeleton?], in fractions of the garden box. */
+const garden: [string, number, number, number, boolean][] = [
+  ["-b", 0.78, -0.14, 0.2, true],
+  ["", 0.7, 0.5, 0.24, true],
+  ["", 0.62, -0.1, 0, false],
+  ["-b", 0.66, 0.44, 0, false],
+  ["-b", 0.4, 0.22, -0.02, false],
+];
+
+function lily([stencil, width, left, bottom, back]: (typeof garden)[number], i: number) {
+  const mask = `url(/ink-lilies${stencil}.png), linear-gradient(to top, transparent, #000 22%)`;
+  return (
+    <i
+      key={`${back}${i}`}
+      className={back ? "lily back" : "lily"}
+      style={{
+        width: `${width * 100}%`,
+        left: `${left * 100}%`,
+        bottom: `${bottom * 100}%`,
+        maskImage: mask,
+        WebkitMaskImage: mask,
+      }}
+    />
+  );
+}
 
 function WorkRow({ work: w }: { work: (typeof works)[number] }) {
   const body = (
@@ -38,6 +64,24 @@ export default function Home() {
 
       {/* 序 — Intro */}
       <section id="intro" className="hero">
+        <Fret className="tl" />
+        <Fret className="tr" />
+        <Fret className="bl" />
+        <Fret className="br" />
+
+        {/* a skeleton keeping its red blossoms, in a garden of black spider lilies */}
+        <div className="soul" aria-hidden="true">
+          {garden.filter((g) => g[4]).map(lily)}
+          <div className="soulSkeleton">
+            <Image src="/ink-skeleton.webp" alt="" fill sizes="(max-width: 1100px) 1px, 24vw" />
+          </div>
+          {garden.filter((g) => !g[4]).map(lily)}
+        </div>
+
+        <div className="dragon" aria-hidden="true">
+          <Image src="/ink-dragon.jpg" alt="" fill preload sizes="(max-width: 1100px) 90vw, 32vw" />
+        </div>
+
         <p className="corner tl">
           Portfolio
           <span>作品集 · {year}</span>
@@ -100,6 +144,8 @@ export default function Home() {
 
       {/* 作 — Work */}
       <section id="work" className="section work">
+        <Fret className="tr" />
+        <Fret className="bl" />
         <Reveal className="heading">
           <span className="brush">贰</span>
           <h2>Selected Work</h2>

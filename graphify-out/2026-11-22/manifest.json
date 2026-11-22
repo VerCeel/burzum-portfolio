@@ -5,13 +5,13 @@
     "semantic_hash": ""
   },
   "app/page.tsx": {
-    "mtime": 1795321878.0199394,
-    "ast_hash": "def52fa88339fe9c3b7e752a94fc4966",
+    "mtime": 1795324193.0930274,
+    "ast_hash": "eb1d2f667bd5a73d9ba5955a59fcf247",
     "semantic_hash": ""
   },
   "components/Ink.tsx": {
-    "mtime": 1795320996.2886379,
-    "ast_hash": "576e3a2d84c9b8e0cc7696b96f1653fe",
+    "mtime": 1795323481.0727513,
+    "ast_hash": "aef63a9df0192482180a0ce21390081d",
     "semantic_hash": ""
   },
   "components/Reveal.tsx": {
@@ -72,6 +72,31 @@
   "public/ink-pavilion.jpg": {
     "mtime": 1795321802.5451818,
     "ast_hash": "da8fe5a93dd2bc04f7abf3b1decaacce",
+    "semantic_hash": ""
+  },
+  "public/ink-figure.jpg": {
+    "mtime": 1795322057.6851704,
+    "ast_hash": "e97dfa1911adaaae4065a999a8dc3831",
+    "semantic_hash": ""
+  },
+  "public/ink-dragon.jpg": {
+    "mtime": 1795323074.7232919,
+    "ast_hash": "e5fc789e4ba95eb79d0bd220c2187a14",
+    "semantic_hash": ""
+  },
+  "public/ink-lilies.png": {
+    "mtime": 1795324515.8901293,
+    "ast_hash": "0726f4f86c4e795e495e581fa67d944d",
+    "semantic_hash": ""
+  },
+  "public/ink-lilies-b.png": {
+    "mtime": 1795324515.9565916,
+    "ast_hash": "6a7dc5b56b516fe23077eddfbb34924c",
+    "semantic_hash": ""
+  },
+  "public/ink-skeleton.webp": {
+    "mtime": 1795324516.2688851,
+    "ast_hash": "363a307434f43adcb673d75c9df48a67",
     "semantic_hash": ""
   }
 }

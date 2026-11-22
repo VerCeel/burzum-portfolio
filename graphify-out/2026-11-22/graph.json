@@ -202,15 +202,15 @@
       "norm_label": "branch()"
     },
     {
-      "label": "Roof()",
+      "label": "Fret()",
       "file_type": "code",
       "source_file": "components/Ink.tsx",
-      "source_location": "L111",
+      "source_location": "L112",
       "_origin": "ast",
-      "id": "components_ink_roof",
+      "id": "components_ink_fret",
       "community": 0,
       "community_name": "page.tsx",
-      "norm_label": "roof()"
+      "norm_label": "fret()"
     },
     {
       "label": "Reveal.tsx",
@@ -1251,6 +1251,18 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_page",
+      "target": "components_ink_fret",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/page.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "app_page",
       "target": "components_ink_gate",
       "confidence_score": 1.0
     },
@@ -1264,18 +1276,6 @@
       "_origin": "ast",
       "source": "app_page",
       "target": "components_ink_inkfilters",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/page.tsx",
-      "source_location": "L2",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_page",
-      "target": "components_ink_roof",
       "confidence_score": 1.0
     },
     {
@@ -1447,6 +1447,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "components/Ink.tsx",
+      "source_location": "L112",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "components_ink",
+      "target": "components_ink_fret",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/Ink.tsx",
       "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast",
@@ -1463,17 +1474,6 @@
       "_origin": "ast",
       "source": "components_ink",
       "target": "components_ink_inkfilters",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "components/Ink.tsx",
-      "source_location": "L111",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "components_ink",
-      "target": "components_ink_roof",
       "confidence_score": 1.0
     },
     {
@@ -2278,5 +2278,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "a25442e68adbbe52fc961ea3eaf742ac2cb2bef9"
+  "built_at_commit": "f9bc1aa49e2b074f21ad490de342be3b6d983e7f"
 }
