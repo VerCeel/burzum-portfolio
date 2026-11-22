@@ -18,8 +18,14 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
-  /* red thumb on a paper track */
-  scrollbar-color: var(--red) var(--paper-deep);
+  /* hide the scrollbar while keeping the page scrollable */
+  scrollbar-width: none;
+  /* nothing may push the page sideways (the branch and dragon bleed past the edge on purpose) */
+  overflow-x: clip;
+}
+
+html::-webkit-scrollbar {
+  display: none;
 }
 
 body {
@@ -1224,14 +1230,24 @@ a.workRow:hover .workMain {
     padding-left: 0.3em;
   }
 
+  .role {
+    max-width: 280px;
+    letter-spacing: 0.28em;
+    line-height: 1.9;
+  }
+
+  /* the branch runs off the right edge: clip it here so it cannot widen the page */
+  .about {
+    overflow-x: clip;
+  }
+
   .contactBg {
     opacity: 0.6;
   }
 
+  /* no room for the pine beside the greeting on a phone */
   .contactPine {
-    height: min(60%, 96vw);
-    opacity: 0.4;
-    transform: translateY(-50%);
+    display: none;
   }
 
   .greeting {
